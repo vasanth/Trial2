@@ -1,0 +1,173 @@
+﻿<Window x:Class="Oven_Test2.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:system="clr-namespace:System;assembly=mscorlib"
+
+        Title="MainWindow" Height="350" Width="525" WindowStyle="None" Name="wnd">
+
+    
+    <Grid>
+        <TabControl SelectionChanged="TabControl_SelectionChanged">
+            <TabItem Header="Oven Address Setup">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="40"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="40"/>
+                    </Grid.RowDefinitions>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="100"/>
+                            <ColumnDefinition Width="100"/>
+                            <ColumnDefinition Width="100"/>
+                            <ColumnDefinition Width="100"/>
+                        </Grid.ColumnDefinitions>
+                        <Label Content="Total Oven" VerticalAlignment="Center"/>
+                        <TextBlock Text="" Grid.Column="1" TextWrapping="Wrap" VerticalAlignment="Center" FontWeight="Bold"/>
+                        <Label Content="Oven Left" Grid.Column="2" VerticalAlignment="Center"/>
+                        <TextBlock Name="TextBlockOvenLeft" Grid.Column="3" TextWrapping="Wrap" VerticalAlignment="Center" FontWeight="Bold"/>
+                    </Grid>
+                    <ListView x:Name="ListViewOven" Grid.Row="1" HorizontalContentAlignment="Center" SelectionMode="Single">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Header="Oven Name"  Width="100"/>
+                                <GridViewColumn Header="Oven Address" Width="100"/>
+                                <GridViewColumn Header="Default Recipe"  Width="100" />
+                                <GridViewColumn Header="Stage List"  Width="150"/>
+                                <GridViewColumn Header="Vacuum Time (s)"  Width="100"/>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                    <Grid Grid.Row="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Button Name="ButtonAdd" Content="Add" Click="ButtonAdd_Click"/>
+                        <Button Name="ButtonEdit" Grid.Column="1" Content="Edit" Click="ButtonEdit_Click"/>
+                        <Button Name="ButtonRemove" Grid.Column="2" Content="Remove" Click="ButtonRemove_Click" Height="40" VerticalAlignment="Bottom"/>
+                    </Grid>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Oven Recipe Setup">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="4*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="30"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="40"/>
+                            <RowDefinition Height="40"/>
+                            <RowDefinition Height="30"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="40"/>
+                            <RowDefinition Height="40"/>
+                        </Grid.RowDefinitions>
+                        <Label Content="Recipes" VerticalContentAlignment="Bottom" FontWeight="Bold" Grid.ColumnSpan="2" Margin="0,0,-0.2,0"/>
+                        <ListBox x:Name="ListBoxRecipe" Grid.Row="1" SelectionChanged="ListBoxRecipe_SelectionChanged" Height="47" VerticalAlignment="Top">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Name}"/>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                        <Button Name="ButtonRecipeCopy" Content="Copy Recipe" Grid.Row="2" Click="ButtonRecipeCopy_Click" />
+                        <Button Name="ButtonRecipeDelete" Content="Delete Recipe" Grid.Row="3" Click="ButtonRecipeDelete_Click"/>
+                        <Label Content="Ovens" Grid.Row="4" FontWeight="Bold" VerticalContentAlignment="Bottom"/>
+                        <ListBox x:Name="ListBoxOven" Grid.Row="5" SelectionMode="Multiple">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Name}"/>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                        <Button Name="ButtonLinkOvenToRecipe" Grid.Row="6" Content="Link Oven To Recipe" Click="ButtonLinkOvenToRecipe_Click"/>
+                        <Button Name="ButtonClearOvenRecipeLinkage" Grid.Row="7" Content="Clear Oven Recipe Linkage" Click="ButtonClearOvenRecipeLinkage_Click"/>
+                    </Grid>
+                    <Grid Grid.Column="1">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="40"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="40"/>
+                        </Grid.RowDefinitions>
+                        <StackPanel Orientation="Horizontal">
+                            <Label Content="Recipe Type" VerticalAlignment="Center"/>
+                            <ComboBox Name="ComboBoxRecipeType" MinWidth="150" VerticalContentAlignment="Center" SelectionChanged="ComboBoxRecipeType_SelectionChanged" IsEnabled="False"/>
+                            <Button Name="ButtonAddStep" Content="Add Step" MinWidth="100" IsEnabled="False" Click="ButtonAddStep_Click"/>
+                        </StackPanel>
+                        <DataGrid x:Name="DataGridRecipeDetail"  Grid.Row="1">
+                            <DataGrid>
+                                <DataGridTextColumn Binding="{Binding Step}" Header="Step" Width="40" IsReadOnly="True"/>
+                                <DataGridTextColumn Binding="{Binding T1, ValidatesOnExceptions=True}" Header="T1" Width="50"/>
+                                <DataGridTextColumn Binding="{Binding T1Lcl, ValidatesOnExceptions=True}" Header="T1 LCL" Width="50"/>
+                                <DataGridTextColumn Binding="{Binding T1Ucl, ValidatesOnExceptions=True}" Header="T1 UCL" Width="50"/>
+                                <DataGridTextColumn Binding="{Binding T2, ValidatesOnExceptions=True}" Header="T2" Width="50"/>
+                                <DataGridTextColumn Binding="{Binding T2Lcl, ValidatesOnExceptions=True}" Header="T2 LCL" Width="50"/>
+                                <DataGridTextColumn Binding="{Binding T2Ucl, ValidatesOnExceptions=True}" Header="T2 UCL" Width="50"/>
+                                <!--DataGridTextColumn Binding="{Binding Duration}" Header="Duration" Width="60"/-->
+                                <DataGridTextColumn Binding="{Binding DurationHour, ValidatesOnExceptions=True}" Header="Duration (Hour)" Width="100"/>
+                                <DataGridTextColumn Binding="{Binding DurationMinute, ValidatesOnExceptions=True}" Header="Duration (Minute)" Width="100"/>
+                                <DataGridTextColumn Binding="{Binding Pressure, ValidatesOnExceptions=True}" Header="Pressure" Width="60"/>
+                            </DataGrid>
+                        </DataGrid>
+                        <Grid Grid.Row="2">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Button Name="ButtonGetRecipeFromOven" Content="Get Recipe From Oven" Click="ButtonGetRecipeFromOven_Click"/>
+                            <Button Name="ButtonRefreshRecipe" Grid.Column="1" Content="Refresh Recipe" Click="ButtonRefreshRecipe_Click" />
+                            <Button Name="ButtonNewRecipe" Grid.Column="2" Content="New Recipe" Click="ButtonNewRecipe_Click"/>
+                            <Button Name="ButtonSaveRecipe" Grid.Column="3" Content="Save Recipe" Click="ButtonSaveRecipe_Click"/>
+                        </Grid>
+                    </Grid>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Trial" HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" Width="54">
+
+                <Grid x:Name="txtValue1" Background="#FFE5E5E5">
+                    <TextBox x:Name="txtValue" Height="23" TextWrapping="Wrap" Text=" " Margin="0,22,0,269"/>
+                    <TextBlock Text=" " FontWeight="Bold" />
+                    <TextBlock Text="{Binding Path=Text, ElementName=txtValue}" />
+
+                    <TextBlock Text="Window title:  " Margin="121,45,312,239" />
+                    <TextBox Text="{Binding Title, UpdateSourceTrigger=PropertyChanged}" Margin="259,45,130,239" />
+                    <TextBlock Text="Window dimensions: " Margin="121,75,252,213"/>
+                    <TextBox Text="{Binding Width}" Width="50" Margin="331,75,130,213" />
+                    <TextBlock Text=" x " Margin="314,75,185,213" RenderTransformOrigin="4.455,-0.714" />
+                    <TextBox Text="{Binding Height}" Width="50" TextChanged="TextBox_TextChanged" Margin="259,75,202,213" />
+
+                    <TextBlock Text="Window title:  " Margin="121,106,312,178" />
+                    <TextBox Name="txtWindowTitle" Text="{Binding Title, UpdateSourceTrigger=Explicit}" Margin="259,106,130,178" />
+                    <Button Name="btnUpdateSource" Click="btnUpdateSource_Click" Margin="386,106,85,178" Padding="5,0">*</Button>
+                    <TextBlock Text="Window dimensions: " Margin="121,141,252,147"/>
+                    <TextBox Text="{Binding Width, UpdateSourceTrigger=LostFocus}" Width="50" Margin="331,136,130,152" />
+                    <TextBlock Text=" x " Margin="314,136,185,152" RenderTransformOrigin="4.455,-0.714" />
+                    <TextBox Text="{Binding Height, UpdateSourceTrigger=PropertyChanged}" Width="50" Margin="259,136,202,152" />
+                    <ListBox Name="lbUsers" DisplayMemberPath="Name" Margin="191,199,166,25" SelectionChanged="lbUsers_SelectionChanged"></ListBox>
+
+
+                    <Button Name="btnAddUser" Margin="368,199,21,85" Click="btnAddUser_Click">Add user</Button>
+                    <Button Name="btnChangeUser"  Click="btnChangeUser_Click" Margin="368,229,21,55">Change user</Button>
+                    <Button Name="btnDeleteUser" Margin="368,259,21,25" Click="btnDeleteUser_Click">Delete user</Button>
+
+                    <TextBlock Text="{Binding ElementName=wnd, Path=ActualWidth, StringFormat=Window width: {0:#}}" Margin="0,229,360,62" />
+                    <TextBlock Text="{Binding ElementName=wnd, Path=ActualHeight, StringFormat=Window height: {0:C}}" Margin="0,204,360,90" />
+                    <TextBlock Text="{Binding Source={x:Static system:DateTime.Now}, StringFormat=Date: {0:dddd}}" Margin="0,178,341,115" />
+                    <TextBlock Text="{Binding Source={x:Static system:DateTime.Now}, StringFormat=Time: {0:HH:mm}}" Margin="0,154,395,136" />
+
+                    <TextBlock Text="Width: " Margin="0,249,395,52" />
+                    <TextBlock Text="{Binding ElementName=wnd, Path=ActualWidth, StringFormat={}{0:#}}" Margin="82,246,395,52" />
+
+                </Grid>
+
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Window>

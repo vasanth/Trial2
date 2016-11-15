@@ -1,0 +1,13 @@
+C:\Users\admin\Desktop\Tutorial\uemy\Oven_Test2\Oven_Test2\bin\Debug\Oven_Test2.exe.config
+C:\Users\admin\Desktop\Tutorial\uemy\Oven_Test2\Oven_Test2\obj\Debug\Oven_Test2.csprojResolveAssemblyReference.cache
+C:\Users\admin\Desktop\Tutorial\uemy\Oven_Test2\Oven_Test2\obj\Debug\MainWindow.baml
+C:\Users\admin\Desktop\Tutorial\uemy\Oven_Test2\Oven_Test2\obj\Debug\MainWindow.g.cs
+C:\Users\admin\Desktop\Tutorial\uemy\Oven_Test2\Oven_Test2\obj\Debug\App.g.cs
+C:\Users\admin\Desktop\Tutorial\uemy\Oven_Test2\Oven_Test2\obj\Debug\Oven_Test2_MarkupCompile.cache
+C:\Users\admin\Desktop\Tutorial\uemy\Oven_Test2\Oven_Test2\obj\Debug\Oven_Test2.g.resources
+C:\Users\admin\Desktop\Tutorial\uemy\Oven_Test2\Oven_Test2\obj\Debug\Oven_Test2.Properties.Resources.resources
+C:\Users\admin\Desktop\Tutorial\uemy\Oven_Test2\Oven_Test2\obj\Debug\Oven_Test2.csproj.GenerateResource.Cache
+C:\Users\admin\Desktop\Tutorial\uemy\Oven_Test2\Oven_Test2\bin\Debug\Oven_Test2.exe
+C:\Users\admin\Desktop\Tutorial\uemy\Oven_Test2\Oven_Test2\bin\Debug\Oven_Test2.pdb
+C:\Users\admin\Desktop\Tutorial\uemy\Oven_Test2\Oven_Test2\obj\Debug\Oven_Test2.exe
+C:\Users\admin\Desktop\Tutorial\uemy\Oven_Test2\Oven_Test2\obj\Debug\Oven_Test2.pdb
